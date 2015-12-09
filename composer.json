@@ -1,0 +1,21 @@
+{
+    "name": "ebuka/blog",
+    "authors": [
+        {
+            "name": "andela-iadeniyi",
+            "email": "ibonly01@gmail.com"
+        }
+    ],
+    "autoload":{
+        "classmap": ["src/"],
+        "psr-4": {
+            "Ibonly\\Blog\\": "src/"
+        }
+    },
+    "require": {
+        "slim/slim": "^2.6",
+        "slim/views": "^0.1.3",
+        "twig/twig": "^1.23",
+        "ibonly/potato-orm": "1.0.0.x-dev"
+    }
+}
