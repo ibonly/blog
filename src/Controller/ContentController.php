@@ -4,18 +4,36 @@ namespace Ibonly\Blog;
 
 use Ibonly\Blog\Content;
 
-$content = new Content();
+class Content
+{
+    protected $content;
 
-$content->id = NULL;
-$content->menu_id = $_POST['menu_id'];
-$content->blog_title = $_POST['title'];
-$content->blog_content = $_POST['content'];
-$content->date_created = date('Y-m-d H:i:s');
+    function __construct() {
+        $this->content = new Content();
+    }
 
-$save = $content->save();
+    /**
+     * Insert into content table
+     *
+     * @param  $name
+     * @param  $description
+     *
+     * @return bool
+     */
+    public function insertContent ($menu_id, $title, $content)
+    {
+        $this->content->id = NULL;
+        $this->content->menu_id = $menu_id;
+        $this->content->blog_title = $title;
+        $this->content->blog_content = $content;
+        $this->content->date_created = date('Y-m-d H:i:s');
 
-if ($save) {
-    return "Done";
-} else {
-    return "Error";
+        $save = $this->content->save();
+
+        if ($save) {
+            return "Done";
+        } else {
+            return "Error";
+        }
+    }
 }
