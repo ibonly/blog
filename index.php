@@ -3,6 +3,10 @@
 require 'vendor/autoload.php';
 
 use Slim\Slim;
+use Ibonly\Blog\MenuController;
+date_default_timezone_set('Africa/Lagos');
+
+$menu = new MenuController();
 
 $app = new Slim( array(
         'templates.path' => 'resources/view',
@@ -18,13 +22,17 @@ $twigView->parserExtensions = array(
         new \Slim\Views\TwigExtension()
 );
 
-$app->get('/', function () use ($app) {
-    // $menus = $menu->getALL()->all();
-    $app->render('home.html.twig');
-});
-
 $app->get('/content', function () use ($app) {
     // $menus = $menu->getALL()->all();
     $app->render('content.html.twig');
 });
+
+$app->get('/', function () use ($app, $menu) {
+    $app->render('home.html.twig');
+});
+
+$app->post('/menu/create', function () use ($menu) {
+    return $menu->insertMenu($_POST['name'], $_POST['description']);
+});
+
 $app->run();

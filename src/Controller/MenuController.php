@@ -4,17 +4,35 @@ namespace Ibonly\Blog;
 
 use Ibonly\Blog\Menu;
 
-$menu = new Menu();
+class MenuController
+{
+    protected $menu;
 
-$menu->id = NULL;
-$menu->name = $_POST['name'];
-$menu->description = $_POST['description'];
-$menu->date_created = date('Y-m-d H:i:s');
+    function __construct() {
+        $this->menu = new Menu();
+    }
 
-$save = $menu->save();
+    /**
+     * Insert into menu table
+     *
+     * @param  $name
+     * @param  $description
+     *
+     * @return bool
+     */
+    public function insertMenu ($name, $description)
+    {
+        $this->menu->id = NULL;
+        $this->menu->name = $name;
+        $this->menu->description = $description;
+        $this->menu->date_created = date('Y-m-d H:i:s');
 
-if ($save) {
-    return "Done";
-} else {
-    return "Error";
+        $save = $this->menu->save();
+
+        if ($save) {
+            return "Done";
+        } else {
+            return "Error";
+        }
+    }
 }
