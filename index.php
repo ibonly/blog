@@ -18,9 +18,13 @@ $twigView->parserExtensions = array(
         new \Slim\Views\TwigExtension()
 );
 
-$app->get('/', function () use ($app, $menu) {
+$app->get('/', function () use ($app) {
     // $menus = $menu->getALL()->all();
     $app->render('home.html.twig');
 });
 
+$app->get('/content', function () use ($app) {
+    // $menus = $menu->getALL()->all();
+    $app->render('content.html.twig');
+});
 $app->run();
