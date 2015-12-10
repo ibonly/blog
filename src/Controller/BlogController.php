@@ -27,18 +27,23 @@ class BlogController extends Controller
 
     public function getAllContent()
     {
-        return $this->content->getALL()->all();
+        $content = $this->content->getALL()->all();
+
+        return $this->removeAllDash($content, 'blog_title');
     }
 
     public function getmenuContent($name)
     {
         $id = $this->menu->where(['name' => $name])->first()->id;
+        $content = $this->content->where([ 'menu_id' => $id])->all();
 
-        return $this->content->where([ 'menu_id' => $id])->all();
+        return $this->removeAllDash($content, 'blog_title');
     }
 
     public function getContent($id)
     {
-        return $this->content->where([ 'id' => $id])->first();
+        $content = $this->content->where([ 'blog_title' => $id])->first();
+
+        return $this->removeSingleDash($content, 'blog_title');
     }
 }

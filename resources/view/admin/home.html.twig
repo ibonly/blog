@@ -1,47 +1,11 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>sdkfsdf</title>
-</head>
-<body>
-<h3>Create Menu</h3>
-<form id="sad" action="/admin/menu/create" method="post">
-    <input type="text" name="name" />
-    <input type="text" name="description" />
-    <input type="submit" name="submit" value="submit">
-</form>
-<h3>Create SUB Menu</h3>
-<form id="sub_menu" action="/admin/menu/sub_menu" method="post">
-    <select name="menu_id">
-        {% for menu in menus %}
-            <option value="{{ menu.id }}">{{ menu.name }}</option>
-        {% endfor %}
-    </select>
-    <input type="text" name="submenu_name">
-    <input type="description" name="submenu_description">
-    <input type="submit" name="submit" value="Create SubMneu">
-</form>
+{% extends "admin/master.html.twig" %}
 
-<h3>Create Content</h3>
-<form id="content" action="/admin/content" method="post">
-    <select name="menu_id">
-        {% for menu in menus %}
-            <option value="{{ menu.id }}">{{ menu.name }}</option>
-        {% endfor %}
-    </select>
-    <input type="text" name="title">
-    <input type="description" name="content">
-    <input type="submit" name="submit" value="Create SubMneu">
-</form>
-
+{% block content %}
 <h3>Update Blog Post</h3>
 <table>
 {% for content in contents %}
-    <tr><td><a href="/admin/content/{{ content.id }}">{{ content.blog_title }}</a></td></tr>
+    <tr><td><a href="/admin/content/{{ content.link }}">{{ content.blog_title }}</a></td></tr>
 {% endfor %}
 </table>
 
-</form>
-
-</body>
-</html>
+{% endblock %}

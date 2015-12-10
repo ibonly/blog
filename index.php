@@ -39,7 +39,7 @@ $app->get('/', function () use ($app, $blog) {
 $app->get('/menu/:id', function ($id) use ($app, $blog) {
     $menus = $blog->getMenu();
     $content = $blog->getmenuContent($id);
-    // var_dump($content);
+
     $app->render('menu_list.html.twig', [ 'menus' => $menus, 'contents' => $content ]);
 });
 
@@ -50,10 +50,23 @@ $app->get('/content/:id', function ($id) use ($app, $blog) {
     ]);
 });
 
+
+
 $app->get('/admin', function () use ($app, $blog) {
     $app->render('admin/home.html.twig', [
         'menus' => $blog->getMenu(),
         'contents' => $blog->getAllContent()
+    ]);
+});
+
+$app->get('/admin/content', function () use ($app, $blog) {
+    $app->render('admin/content.html.twig', [
+        'menus' => $blog->getMenu()
+    ]);
+});
+$app->get('/admin/menu', function () use ($app, $blog) {
+    $app->render('admin/menu.html.twig', [
+        'menus' => $blog->getMenu()
     ]);
 });
 
