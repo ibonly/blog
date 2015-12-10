@@ -30,23 +30,37 @@ $twigView->parserExtensions = array(
 );
 
 $app->get('/', function () use ($app, $blog) {
+
     $app->render('home.html.twig', [
         'menus' => $blog->getMenu(),
-        'allContents' => $blog->getAllContent()
+        'allContents' => $blog->getAllContent(),
+        'recentPost' =>$blog->getRecentTitle()
     ]);
 });
 
 $app->get('/menu/:id', function ($id) use ($app, $blog) {
-    $menus = $blog->getMenu();
-    $content = $blog->getmenuContent($id);
 
-    $app->render('menu_list.html.twig', [ 'menus' => $menus, 'contents' => $content ]);
+    $app->render('menu_list.html.twig', [
+        'menus' => $blog->getMenu(),
+        'contents' => $blog->getmenuContent($id),
+        'recentPost' =>$blog->getRecentTitle()
+    ]);
 });
 
 $app->get('/content/:id', function ($id) use ($app, $blog) {
     $app->render('content.html.twig', [
         'menus' => $blog->getMenu(),
-        'blogContents' => $blog->getContent($id)
+        'blogContents' => $blog->getContent($id),
+        'recentPost' =>$blog->getRecentTitle()
+    ]);
+});
+
+$app->post('/search', function () use ($app, $blog) {
+
+    $app->render('search.html.twig', [
+        'menus' => $blog->getMenu(),
+        'contents' => $blog->getSearch($_POST['search']),
+        'recentPost' =>$blog->getRecentTitle()
     ]);
 });
 

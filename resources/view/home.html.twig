@@ -1,20 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>BLOG POST</title>
-</head>
-<body>
+{% extends "master.html.twig" %}
 
-{% for menu in menus %}
-    <a href="/menu/{{ menu.name }}">{{ menu.name }}</a>
-{% endfor %}
-<hr />
+{% block content %}
+    <div class="content-grid">
+        {% for allContent in allContents %}
+            <div class="content-grid-info">
+                <img src="{{ baseUrl() }}/assets/images/post1.jpg" alt=""/>
+                <div class="post-info" id="article">
+                    <h4><a href="/content/{{ allContent.link }}">{{ allContent.blog_title }}</a>  {{ allContent.date_created }} / 27 Comments</h4>
+                    <p>{{ allContent.short }}</p>
+                    <a href="/content/{{ allContent.link }}"><span></span>READ MORE</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
-{% for allContent in allContents %}
-    <a href="/content/{{ allContent.link }}">{{ allContent.blog_title }}</a>
-<hr />
-{% endfor %}
-
-
-</body>
-</html>
+{% endblock %}

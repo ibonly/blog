@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>BLOG POST</title>
-</head>
-<body>
-<a href="/">BACK</a>
-<hr />
-{% for content in contents %}
+{% extends "master.html.twig" %}
 
-    <a href="/content/{{ content.id }}">{{ content.blog_title }}</a>
-<hr />
+{% block content %}
+    <div class="content-grid">
+        {% for content in contents %}
+            <div class="content-grid-info">
+                <img src="{{ baseUrl() }}/assets/images/post1.jpg" alt=""/>
+                <div class="post-info" id="article">
+                    <h4><a href="/content/{{ content.link }}">{{ content.blog_title }}</a>  {{ content.date_created }} / 27 Comments</h4>
+                    <p>{{ content.short }}</p>
+                    <a href="/content/{{ content.link }}"><span></span>READ MORE</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 
-{% endfor %}
-</body>
-</html>
+{% endblock %}

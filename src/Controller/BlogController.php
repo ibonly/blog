@@ -22,14 +22,16 @@ class BlogController extends Controller
 
     public function getMenu()
     {
-        return $this->menu->getALL()->all();
+        $content = $this->menu->getALL()->all();
+
+        return $this->removeAllDash($content, 'name', 'description');
     }
 
     public function getAllContent()
     {
         $content = $this->content->getALL()->all();
 
-        return $this->removeAllDash($content, 'blog_title');
+        return $this->removeAllDash($content, 'blog_title', 'blog_content');
     }
 
     public function getmenuContent($name)
@@ -37,13 +39,28 @@ class BlogController extends Controller
         $id = $this->menu->where(['name' => $name])->first()->id;
         $content = $this->content->where([ 'menu_id' => $id])->all();
 
-        return $this->removeAllDash($content, 'blog_title');
+        return $this->removeAllDash($content, 'blog_title', 'blog_content');
     }
 
     public function getContent($id)
     {
         $content = $this->content->where([ 'blog_title' => $id])->first();
 
-        return $this->removeSingleDash($content, 'blog_title');
+        return $this->removeSingleDash($content, 'blog_title', 'blog_content');
+    }
+
+    public function getRecentTitle()
+    {
+        $content = $this->content->getALL()->allDESC(5);
+
+        return $this->removeAllDash($content, 'blog_title', 'blog_content');
+    }
+
+    public function getSearch($name)
+    {
+        $title = $this->addDashToTitle($name);
+        $content = $this->content->where([ 'blog_title' => $title])->first();
+
+        return $this->removeSingleDash($content, 'blog_title', 'blog_content');
     }
 }

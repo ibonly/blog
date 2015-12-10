@@ -1,0 +1,17 @@
+{% extends "master.html.twig" %}
+
+{% block content %}
+    <div class="content-grid">
+        {# {% for content in contents %} #}
+            <div class="content-grid-info">
+                <img src="{{ baseUrl() }}/assets/images/post1.jpg" alt=""/>
+                <div class="post-info" id="article">
+                    <h4><a href="/content/{{ contents.link }}">{{ contents.blog_title }}</a>  {{ contents.date_created }} / 27 Comments</h4>
+                    <p>{{ contents.short }}</p>
+                    <a href="/content/{{ contents.link }}"><span></span>READ MORE</a>
+                </div>
+            </div>
+        {# {% endfor %} #}
+    </div>
+
+{% endblock %}
