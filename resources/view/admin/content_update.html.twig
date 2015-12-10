@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BLOG POST</title>
+</head>
+<body>
+<a href="/admin">BACK</a>
+
+<h3>Update Content</h3>
+<form id="content" action="/admin/content/update" method="post">
+    <input type="hidden" name="id" value="{{ contents.id }}">
+    <select name="menu_id">
+        {% for menu in menus %}
+            <option value="{{ menu.id }}"
+            {% if menu.id == contents.menu_id %}
+                selected="true"
+            {% endif %}
+            >{{ menu.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="title" value="{{ contents.blog_title }}">
+    <input type="description" name="content" value="{{ contents.blog_content }}">
+    <input type="submit" name="submit" value="Create SubMneu">
+</form>
+</body>
+</html>

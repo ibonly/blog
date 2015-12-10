@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BLOG POST</title>
+</head>
+<body>
+<a href="/">BACK</a>
+<hr />
+{% for content in contents %}
+
+    <a href="/content/{{ content.id }}">{{ content.blog_title }}</a>
+<hr />
+
+{% endfor %}
+</body>
+</html>

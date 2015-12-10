@@ -3,8 +3,9 @@
 namespace Ibonly\Blog;
 
 use Ibonly\Blog\Menu;
+use Ibonly\Blog\Controller;
 
-class MenuController
+class MenuController extends Controller
 {
     protected $menu;
 
@@ -23,7 +24,7 @@ class MenuController
     public function insertMenu ($name, $description)
     {
         $this->menu->id = NULL;
-        $this->menu->name = $name;
+        $this->menu->name = $this->addDashToTitle($name);
         $this->menu->description = $description;
         $this->menu->date_created = date('Y-m-d H:i:s');
 

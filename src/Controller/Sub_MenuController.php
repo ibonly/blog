@@ -3,8 +3,9 @@
 namespace Ibonly\Blog;
 
 use Ibonly\Blog\Sub_Menu;
+use Ibonly\Blog\Controller;
 
-class Sub_MenuController
+class Sub_MenuController extends Controller
 {
     protected $menu;
 
@@ -20,12 +21,12 @@ class Sub_MenuController
      *
      * @return bool
      */
-    public function insertMenu ($name, $description)
+    public function insertSubMenu ($menu_id, $name, $description)
     {
         $this->menu->id = NULL;
-        $this->menu->menu_id = $_POST['menu_id'];
-        $this->menu->name = $_POST['name'];
-        $this->menu->description = $_POST['description'];
+        $this->menu->menu_id = $menu_id;
+        $this->menu->name = $name;
+        $this->menu->description = $description;
         $this->menu->date_created = date('Y-m-d H:i:s');
 
         $save = $this->menu->save();
