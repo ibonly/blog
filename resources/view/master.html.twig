@@ -1,122 +1,123 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html class="no-js">
 <head>
-<title>{% block title %}{% endblock %}</title>
-<link href="{{ baseUrl() }}/assets/css/bootstrap.css" rel='stylesheet' type='text/css' />
-<link href="{{ baseUrl() }}/assets/css/style.css" rel='stylesheet' type='text/css' />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Personal Blog Responsive web template, Bootstrap Web Templates, Flat Web Templates,  Android Compatible web template,
-Smartphone Compatible web template, free web designs for Nokia, Samsung, LG, sony ericsson, Motorola web design" />
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!----webfonts---->
-<link href='//fonts.googleapis.com/css?family=Oswald:100,400,300,700' rel='stylesheet' type='text/css'>
-<link href='//fonts.googleapis.com/css?family=Lato:100,300,400,700,900,300italic' rel='stylesheet' type='text/css'>
-<!----//webfonts---->
-<script src="{{ baseUrl() }}/assets/js/jquery.min.js"></script>
-<!--end slider -->
-<!--script-->
-<script type="text/javascript" src="{{ baseUrl() }}/assets/js/move-top.js"></script>
-<script type="text/javascript" src="{{ baseUrl() }}/assets/js/easing.js"></script>
-<script type="text/javascript" src="{{ baseUrl() }}/assets/js/readmore.min.js"></script>
-<!--/script-->
-<script type="text/javascript">
-            jQuery(document).ready(function($) {
-                $(".scroll").click(function(event){
-                    event.preventDefault();
-                    $('html,body').animate({scrollTop:$(this.hash).offset().top},900);
-                });
-            });
-</script>
-<!---->
+    <meta charset="utf-8">
+    <!--
+
+    Copyright (c) David Bushell | http://dbushell.com/
+
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>{% block title %}Welcome to agriteer blog{% endblock %}</title>
+
+    <script src="{{ baseUrl() }}/assets/js/modernizr.js"></script>
+
+    <!--[if (gt IE 8) | (IEMobile)]><!-->
+    <link rel="stylesheet" href="{{ baseUrl() }}/assets/css/step4.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ baseUrl() }}/assets/search/css/component.css" />
+    <script src="{{ baseUrl() }}/assets/search/js/modernizr.custom.js"></script>
+    <!--<![endif]-->
+    <!--[if (lt IE 9) & (!IEMobile)]>
+    <link rel="stylesheet" href="css/ie.css">
+    <![endif]-->
 </head>
 <body>
-<!---header---->
-<div class="header">
-     <div class="container">
-          <div class="logo">
-              <a href="index.html"><img src="{{ baseUrl() }}/assets/images/logo.jpg" title="" /></a>
-          </div>
-             <!---start-top-nav---->
-             <div class="top-menu">
-                 <div class="search">
-                     <form method="post" action="/search" >
-                     <input type="text" placeholder="" name="search" required="">
-                     <input type="submit" name="submit" value=""/>
-                     </form>
-                 </div>
-                  <span class="menu"> </span>
-                   <ul>
-                        {% for menu in menus %}
-                            <li><a href="/menu/{{ menu.link }}">{{ menu.name }}</a></li>
-                        {% endfor %}
-                        <div class="clearfix"> </div>
-                 </ul>
-             </div>
-             <div class="clearfix"></div>
-                    <script>
-                    $("span.menu").click(function(){
-                    $(".top-menu ul").slideToggle("slow" , function(){
-                    });
-                    });
-                    </script>
-                <!---//End-top-nav---->
-     </div>
-</div>
-<!--/header-->
-<div class="content">
-     <div class="container">
-         <div class="content-grids">
-             <div class="col-md-8 content-main">
-                {% block content %}{% endblock %}
-              </div>
-              <div class="col-md-4 content-right">
-                 <div class="recent">
-                    <h3>RECENT POSTS</h3>
+
+<div id="outer-wrap">
+    <div id="inner-wrap">
+
+        <div class="header">
+            <header id="top" role="banner">
+                <div class="block" align="center">
+                    <img src="{{ baseUrl() }}/assets/img/logo2.png"><small> / blog.agriteer.com</small>
+                    <a class="nav-btn" id="nav-open-btn" href="#nav">Book Navigation</a>
+                </div>
+            </header>
+
+            <nav id="nav" role="navigation">
+                <div class="block">
+                    <h2 class="block-title">Chapters</h2>
                     <ul>
-                     {% for post in recentPost %}
-                        <li><a href="/content/{{ post.link }}">{{ post.blog_title }}</a></li>
-                    {% endfor %}
+                        {% for menu in menus %}
+                            {% if menu.link == 'home' %}
+                                <li><a href="/">Home</a></li>
+                            {% else %}
+                                <li><a href="/menu/{{ menu.link }}">{{ menu.name }}</a></li>
+                            {% endif %}
+                        {% else %}
+                            Nothing to display
+                        {% endfor %}
                     </ul>
-                 </div>
-                 <div class="comments">
-                     <h3>RECENT COMMENTS</h3>
-                     <ul>
-                     <li><a href="#">Amanda Doe</a> on <a href="#">Hello World!</a></li>
-                     <li><a href="#">Peter Doe </a> on <a href="#"> Photography</a></li>
-                     <li><a href="#">Steve Roberts  </a> on <a href="#">HTML5/CSS3</a></li>
-                     </ul>
-                 </div>
-                 <div class="clearfix"></div>
-                 <div class="archives">
-                     <h3>ARCHIVES</h3>
-                     <ul>
-                     <li><a href="#">October 2013</a></li>
-                     <li><a href="#">September 2013</a></li>
-                     <li><a href="#">August 2013</a></li>
-                     <li><a href="#">July 2013</a></li>
-                     </ul>
-                 </div>
-                 <div class="categories">
-                     <h3>CATEGORIES</h3>
-                     <ul>
-                     <li><a href="#">Vivamus vestibulum nulla</a></li>
-                     <li><a href="#">Integer vitae libero ac risus e</a></li>
-                     <li><a href="#">Vestibulum commo</a></li>
-                     <li><a href="#">Cras iaculis ultricies</a></li>
-                     </ul>
-                 </div>
-                 <div class="clearfix"></div>
-              </div>
-              <div class="clearfix"></div>
-          </div>
-      </div>
-</div>
-<!---->
-<div class="footer">
-    <div class="container">
-        <p>© 2015 Personal Blog . All rights reserved | Template by <a href="http://w3layouts.com/">W3layouts</a></p>
+                    <a class="close-btn" id="nav-close-btn" href="#top">Return to Content</a>
+                </div>
+            </nav>
+        </div>
+    <div id="sb-search" class="sb-search">
+        <form method="post" action="/search">
+            <input class="sb-search-input" placeholder="Enter your search term..." type="search" value="" name="search" id="search">
+            <input class="sb-search-submit" type="submit" value="">
+            <span class="sb-icon-search"></span>
+        </form>
+    </div>
+
+        <div id="main" role="main">
+            <div class="post-outer">
+                {% block content %}{% endblock %}
+            </div>
+
+
+            <div class="left-outer">
+                <div class="container" align="center">
+                    <img src="{{ baseUrl() }}/assets/img/logo.png" class="logo" />
+                </div>
+
+                <div class="container">
+                    <div class="top">
+                        <h3>Latest Posts</h3>
+                    </div>
+                        <ul>
+                            {% for post in recentPosts %}
+                                <li><a href="/content/{{ post.blog_link }}">{{ post.blog_title }}</a></li>
+                            {% endfor%}
+                        </ul>
+                </div>
+
+                <div class="container">
+                    <div class="top">
+                        <h3>Subscribe</h3>
+                    </div>
+                    <form>
+                        <p>Subscribe to our latest blog post</p>
+                        <input type="text" name="name" placeholder="Name" />
+                        <input type="email" name="email" placeholder="Email" />
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+    <!--/#inner-wrap-->
+
+    <div class="footer">
+        &copy; 2016 <a href="#">agriteer blog</a> All Right Reserved
+
+        <div class="created-by">
+            Created by IF-Solutions
+        </div>
     </div>
 </div>
+
+<!--/#outer-wrap-->
+
+<script src="{{ baseUrl() }}/assets/js/main.js"></script>
+<script src="{{ baseUrl() }}/assets/search/js/classie.js"></script>
+<script src="{{ baseUrl() }}/assets/search/js/uisearch.js"></script>
+<script type="text/javascript">
+    new UISearch( document.getElementById( 'sb-search' ) );
+</script>
 </body>
 </html>

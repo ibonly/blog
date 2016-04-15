@@ -1,17 +1,40 @@
 {% extends "master.html.twig" %}
 
 {% block content %}
-    <div class="content-grid">
-        {% for allContent in allContents %}
-            <div class="content-grid-info">
-                <img src="{{ baseUrl() }}/assets/images/post1.jpg" alt=""/>
-                <div class="post-info" id="article">
-                    <h4><a href="/content/{{ allContent.link }}">{{ allContent.blog_title }}</a>  {{ allContent.date_created }} / 27 Comments</h4>
-                    <p>{{ allContent.short }}</p>
-                    <a href="/content/{{ allContent.link }}"><span></span>READ MORE</a>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+        {% for content in allContents %}
 
+                <div class="posts">
+                    <img src="{{ baseUrl() }}/uploads/{{ content.blog_image }}">
+                    <div class="post-content">
+                        <h3 class="post-title"><a href="/content/{{ content.blog_link }}">{{ content.blog_title }}</a></h3>
+                        <div class="post-info">
+                            <span class="author-info">
+                                <i class="fa fa-user"></i>
+                                <span class="fn">
+                                    <span>{{ user.role }} Admin</span>
+                                </span>
+                            </span>
+
+                            <!--<span class="time-info">
+                                <i class="fa fa-calendar"></i>
+                                <a class="timestamp-link" href="http://www.revoltify.co.vu/2015/01/social-media-validation-tools.html" rel="bookmark" title="permanent link"><abbr class="published updated timeago" title="06.41">about a year ago</abbr></a>
+                            </span>
+                            <span class="comment-info">
+                                <i class="fa fa-comments"></i>
+                                <a href="http://www.revoltify.co.vu/2015/01/social-media-validation-tools.html#comment-form" onclick="">
+                                14 Comments
+                                </a>
+                            </span>-->
+                        </div>
+                        <div class="post-body">
+                            {% autoescape false %}
+                            <p>{{ content.blog_description| raw[:300] ~ '...' }}</p>
+                            {% endautoescape %}
+                        </div>
+                        <a class="read-more" href="/content/{{ content.blog_link }}" title="{{ content.blog_title }}"> Read More </a>
+                    </div>
+                </div>
+        {% else %}
+            Nothing to display
+        {% endfor %}
 {% endblock %}

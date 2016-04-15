@@ -2,7 +2,7 @@
 
 namespace Ibonly\Blog;
 
-use Ibonly\Blog\Menu;
+use Ibonly\Blog\Blog_Menu;
 use Ibonly\Blog\Controller;
 
 class MenuController extends Controller
@@ -10,7 +10,7 @@ class MenuController extends Controller
     protected $menu;
 
     function __construct() {
-        $this->menu = new Menu();
+        $this->menu = new Blog_Menu();
     }
 
     /**
@@ -24,12 +24,12 @@ class MenuController extends Controller
     public function insertMenu ($name, $description)
     {
         $this->menu->id = NULL;
-        $this->menu->name = $this->addDashToTitle($name);
+        $this->menu->name = $name;
+        $this->menu->link = $this->addDashToTitle($name);
         $this->menu->description = $description;
         $this->menu->date_created = date('Y-m-d H:i:s');
 
         $save = $this->menu->save();
-
         if ($save) {
             return "Done";
         } else {

@@ -1,28 +1,96 @@
 {% extends "master.html.twig" %}
 
+{% block title %}{{ blogContents.blog_title }}{% endblock %}
+
 {% block content %}
 
-    <div class="single-grid">
-        <img src="{{ baseUrl() }}/assets/images/post1.jpg" alt=""/>
-        <p>{{ blogContents.blog_content }}</p>
-    </div>
-    <ul class="comment-list">
-        <h5 class="post-author_head">Written by <a href="#" title="Posts by admin" rel="author">admin</a></h5>
-        <li><img src="{{ baseUrl() }}/assets/images/avatar.png" class="img-responsive" alt="">
-        <div class="desc">
-        <p>View all posts by: <a href="#" title="Posts by admin" rel="author">admin</a></p>
+    <div class="post-read">
+
+        <div class="post-title">{{ blogContents.fuel }}{{ blogContents.blog_title }}</div>
+
+        <div class="post-info">
+            <span class="author-info">
+                <i class="fa fa-user"></i>
+                <span class="fn">
+                    <span>Admin</span>
+                </span>
+            </span>
+
+            <!--<span class="time-info">
+                <i class="fa fa-calendar"></i>
+                <a class="timestamp-link" href="http://www.revolti.fy.co.vu/2015/01/social-media-validation-tools.html" rel="bookmark" title="permanent link"><abbr class="published updated timeago" title="06.41">about a year ago</abbr></a>
+            </span>
+            <span class="comment-info">
+                <span class="content-header__comment-count">
+                <i class="fa fa-comments"></i><a data-disqus-identifier="{# {{ blogContents.id }} {{ baseUrl() }}/?p={{ blogContents.id }} #}" class="content-header__comment-count-link" href="#disqus_thread"></a></span>
+            </span>-->
+
+            <span class="comment-info">
+            </span>
         </div>
-        <div class="clearfix"></div>
-        </li>
-    </ul>
-    <div class="content-form">
-         <h3>Leave a comment</h3>
-        <form>
-            <input type="text" placeholder="Name" required/>
-            <input type="text" placeholder="Email" required/>
-            <input type="text" placeholder="Phone" required/>
-            <textarea placeholder="Message"></textarea>
-            <input type="submit" value="SEND"/>
-       </form>
+
+        <img src="{{ baseUrl() }}/uploads/{{ blogContents.blog_image }}" class="images" />
+        <div class="post-content" style="text-align: justify;">
+            {% autoescape false %}
+                <p>{{ blogContents.blog_content }}</p>
+            {% endautoescape %}
+        </div>
+
+	    <div class="related-posts">
+            <div class="top">
+                Author
+            </div>
+	        <div id="image"><img src="{{ baseUrl() }}/uploads/user/{{ user.avatar }}" class="img-responsive" alt="" /></div>
+	        <div id="bio">
+	        	<p>{{ user.biography }}</p>
+	        </div>
+	        <div class="post-author-head">Written by: <a href="#" title="Posts by admin" rel="author">{{ user.name }}</a></div>
+	    </div>
+
+        <div class="clear"></div>
     </div>
+
+    <div class="related-posts">
+        <div class="top">
+            Related Posts
+        </div>
+
+        {% for relatedPost in relatedPosts %}
+        <div class="post1">
+            <a href="/content/{{ relatedPost.blog_link }}" title="{{ relatedPost.blog_title }}">
+                <span id="toper">{{ relatedPost.blog_title }}</span>
+                <img src="{{ baseUrl() }}/uploads/{{ relatedPost.blog_image }}" class="related-image" />
+                {% autoescape false %}
+                    <p>{{ relatedPost.blog_description | raw[:50] ~ '...' }}</p>
+                {% endautoescape %}
+            </a>
+        </div>
+    {% endfor %}
+        <div class="clear"></div>
+    </div>
+    
+    <div id="disqus_thread" name="disqus_thread"></div>
+
+<script>
+
+var disqus_shortname  = "agriteer";
+var disqus_identifier = "{{ blogContents.id }} {{ baseUrl() }}/?p={{ blogContents.id }}";
+var disqus_title      = "{{ blogContents.blog_title }}";
+var disqus_url        = "{{ baseUrl() }}/content/{{ blogContents.id }}";
+var disqus_config     = function() {
+    this.language = "en";
+};
+
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+
+(function () {
+  var s = document.createElement('script'); s.async = true;
+  s.type = 'text/javascript';
+  s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());</script>
 {% endblock %}

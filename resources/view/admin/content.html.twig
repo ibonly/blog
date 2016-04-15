@@ -1,20 +1,31 @@
 {% extends "admin/master.html.twig" %}
 
 {% block content %}
+
 <h3>Update Content</h3>
-<form class="form-horizontal" role="form" id="content" action="/admin/content" method="post">
+<form class="form-horizontal" role="form" enctype="multipart/form-data" id="conten" action="/admin/content" method="post">
     <input type="hidden" name="id">
     <div class="form-group">
         <label for="sel1">Menu:</label>
         <select class="form-control" name="menu_id" id="sel1">
             {% for menu in menus %}
                 <option value="{{ menu.id }}">{{ menu.name }}</option>
+            {% else %}
+                No data to display
             {% endfor %}
         </select>
     </div>
     <div class="form-group">
         <label for="usr">Title:</label>
         <input type="text" class="form-control" name="title">
+    </div>
+    <div class="form-group">
+        <label for="description">Introductory Text</label>
+        <input type="text" class="form-control" name="description" />
+    </div>
+    <div class="form-group">
+        <label for="cover">Cover Image</label>
+        <input type="file" class="form-control" name="cover" />
     </div>
     <div class="form-group">
         <label for="comment">Content:</label>
@@ -25,4 +36,38 @@
     </div>
 </form>
 
+  <script src="{{ baseUrl() }}/assets/js/tinymce/tinymce.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/themes/prism.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.4.1/prism.min.js"></script>
+<script type="text/javascript">
+tinymce.init({ 
+
+	selector:'textarea',
+	height: 500,
+	plugins: [
+	    'advlist autolink lists link image charmap print preview anchor',
+	    'searchreplace visualblocks code fullscreen codesample',
+	    'insertdatetime media table contextmenu paste code responsivefilemanager'
+	  ],
+	toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image responsivefilemanager codesample',
+	content_css: [
+	    '//fast.fonts.net/cssapi/e6dc9b99-64fe-4292-ad98-6974f93cd2a2.css',
+	    '//www.tinymce.com/css/codepen.min.css'
+	  ],
+	  
+   external_filemanager_path:"{{ baseUrl() }}/filemanager/",
+   filemanager_title:"Responsive Filemanager" ,
+   external_plugins: { "filemanager" : "/filemanager/plugin.min.js"}
+});
+  
+$(document).ready(function(){
+    $("#content").submit(function(){
+        tinymce.get("cont").save();
+        $.post('/admin/content', $("#content").serialize(), function(e){
+            alert(e);
+        });
+    return false;
+    });
+});
+</script>
 {% endblock %}

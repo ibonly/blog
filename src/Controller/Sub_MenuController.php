@@ -2,7 +2,7 @@
 
 namespace Ibonly\Blog;
 
-use Ibonly\Blog\Sub_Menu;
+use Ibonly\Blog\Blog_Sub_Menu;
 use Ibonly\Blog\Controller;
 
 class Sub_MenuController extends Controller
@@ -10,7 +10,7 @@ class Sub_MenuController extends Controller
     protected $menu;
 
     function __construct() {
-        $this->menu = new Sub_Menu();
+        $this->menu = new Blog_Sub_Menu();
     }
 
     /**

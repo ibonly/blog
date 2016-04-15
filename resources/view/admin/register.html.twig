@@ -1,0 +1,30 @@
+{% extends "admin/master.html.twig" %}
+
+{% block content %}
+<h3>ADD USER</h3>
+
+      <form class="form-signin" action="/admin/register" method="post" enctype="multipart/form-data" >
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Username" required autofocus>
+
+        <label for="fullname" class="sr-only">Full Name</label>
+        <input type="text" id="fullname" class="form-control" name="fullname" placeholder="Full Name" required>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+
+        <textarea name="biography" class="form-control" rows="2" placeholder="Biography"></textarea>
+
+        <label for="role" class="sr-only">Role</label>
+        <select id="role" name="role">
+            <option value="admin">SUPER ADMIN</option>
+            <option value="content">Content ADMIN</option>
+        </select>
+
+        <label for="avatar" class="sr-only">Profile Picture</label>
+        <input type="file" name="avatar" id="avatar">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      </form>
+
+{% endblock %}

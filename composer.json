@@ -1,5 +1,5 @@
 {
-    "name": "ebuka/blog",
+    "name": "ibonly/blog",
     "authors": [
         {
             "name": "andela-iadeniyi",
@@ -16,6 +16,6 @@
         "slim/slim": "^2.6",
         "slim/views": "^0.1.3",
         "twig/twig": "^1.23",
-        "ibonly/potato-orm": "1.0.0.x-dev"
+        "ibonly/potato-orm": "~1.0"
     }
 }

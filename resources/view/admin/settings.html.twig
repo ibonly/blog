@@ -1,0 +1,21 @@
+{% extends "admin/master.html.twig" %}
+
+{% block content %}
+<h3>ACCOUNT UPDATE</h3>
+
+      <form class="form-signin" action="/admin/update" method="post" enctype="multipart/form-data" >
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input type="text" id="inputEmail" class="form-control" value="{{ user.username }}" name="username" required autofocus>
+
+        <label for="fullname" class="sr-only">Full Name</label>
+        <input type="text" id="fullname" class="form-control" value="{{ user.name }}" name="fullname" placeholder="Full Name" required>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+
+        <textarea name="biography" class="form-control" rows="2" placeholder="Biography">{{ user.biography }}</textarea>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+      </form>
+
+{% endblock %}

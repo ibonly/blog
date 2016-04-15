@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "04bfe2db6953ae63354bcfcb48767991",
-    "content-hash": "ff51e2542bdb2574252edd579ab2d35a",
+    "hash": "1c9d997561d7d7b50c968965eddea50e",
+    "content-hash": "b4580f99c73f0312b9da854e1fed7948",
     "packages": [
         {
             "name": "ibonly/potato-orm",
-            "version": "1.0.0.x-dev",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/andela-iadeniyi/Potato-ORM.git",
-                "reference": "0c052a1e390b3cbf70c07fbb3effb0d3450d5470"
+                "reference": "fa85af415967374826dec40fcae686be6317f6b9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/andela-iadeniyi/Potato-ORM/zipball/0c052a1e390b3cbf70c07fbb3effb0d3450d5470",
-                "reference": "0c052a1e390b3cbf70c07fbb3effb0d3450d5470",
+                "url": "https://api.github.com/repos/andela-iadeniyi/Potato-ORM/zipball/fa85af415967374826dec40fcae686be6317f6b9",
+                "reference": "fa85af415967374826dec40fcae686be6317f6b9",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                     "email": "ibonly01@gmail.com"
                 }
             ],
-            "time": "2015-12-04 10:55:05"
+            "time": "2016-03-23 21:59:40"
         },
         {
             "name": "slim/slim",
@@ -149,16 +149,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.23.1",
+            "version": "v1.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6"
+                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
-                "reference": "d9b6333ae8dd2c8e3fd256e127548def0bc614c6",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
+                "reference": "3e5aa30ebfbafd5951fb1b01e338e1800ce7e0e8",
                 "shasum": ""
             },
             "require": {
@@ -171,7 +171,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.23-dev"
+                    "dev-master": "1.24-dev"
                 }
             },
             "autoload": {
@@ -206,32 +206,32 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-11-05 12:49:06"
+            "time": "2016-01-25 21:22:18"
         },
         {
             "name": "vlucas/phpdotenv",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vlucas/phpdotenv.git",
-                "reference": "c10040e0df17d2ee88e9212b50cbe9319e878f59"
+                "reference": "9caf304153dc2288e4970caec6f1f3b3bc205412"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/c10040e0df17d2ee88e9212b50cbe9319e878f59",
-                "reference": "c10040e0df17d2ee88e9212b50cbe9319e878f59",
+                "url": "https://api.github.com/repos/vlucas/phpdotenv/zipball/9caf304153dc2288e4970caec6f1f3b3bc205412",
+                "reference": "9caf304153dc2288e4970caec6f1f3b3bc205412",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "^4.8|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.1-dev"
+                    "dev-master": "2.2-dev"
                 }
             },
             "autoload": {
@@ -257,15 +257,13 @@
                 "env",
                 "environment"
             ],
-            "time": "2015-10-28 18:53:35"
+            "time": "2015-12-29 15:10:30"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "ibonly/potato-orm": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

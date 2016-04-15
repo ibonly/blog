@@ -2,7 +2,7 @@
 
 {% block content %}
 <h3>Create Menu</h3>
-<form class="form-horizontal" role="form" action="/admin/menu/create" method="post">
+<form class="form-horizontal" id="creatmenu" role="form" action="/admin/menu/create" method="post">
     <div class="form-group">
         <label for="usr">Menu:</label>
         <input type="text" class="form-control" name="name">
@@ -38,5 +38,20 @@
         <button type="submit" class="btn btn-default">Submit</button>
     </div>
 </form>
-
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#create_menu").submit(function(){
+        $.post('/admin/menu/create', $("#create_menu").serialize(), function(e){
+            alert(e);
+        });
+    return false;
+    });
+    $("#sub_menu").submit(function(){
+        $.post('/admin/menu/sub_menu', $("#sub_menu").serialize(), function(e){
+            alert(e);
+        });
+    return false;
+    });
+});
+</script>
 {% endblock %}
