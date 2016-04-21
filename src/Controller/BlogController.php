@@ -41,13 +41,11 @@ class BlogController extends Controller
 
     public function getContent($id)
     {
-    //     $content = $this->content->where([ 'blog_link' => $id])->first();
-    //     $content->blog_content = htmlspecialchars_decode($content->blog_content);
-    //     $content->blog_contentUpdate = htmlspecialchars_decode(str_replace('../', '../../', $content->blog_content));
+        $content = $this->content->where([ 'blog_link' => $id])->first();
+        $content->blog_content = htmlspecialchars_decode($content->blog_content);
+        $content->blog_contentUpdate = htmlspecialchars_decode(str_replace('../', '../../', $content->blog_content));
 
-    //     return $content;
-        $re = $this->content->query('SELECT * FROM blog_contents JOIN blog_users WHERE blog_contents.author = blog_users.id AND blog_contents.blog_link = "'.$id.'"');
-        var_dump($re);
+        return $content;
     }
 
     public function author($contentId)
@@ -69,9 +67,8 @@ class BlogController extends Controller
         return $this->content->getALL()->allDESC(3);
     }
 
-    public function getSearch($name)
+    public function getSearch($title)
     {
-        $title = $this->addDashToTitle($name);
         $content = $this->content->where([ 'blog_title' => $title], 'LIKE')->all();
         foreach ($content as $key) {
             $key->blog_content = htmlspecialchars_decode($key->blog_content);

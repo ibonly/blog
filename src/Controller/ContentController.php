@@ -27,11 +27,11 @@ class ContentController extends Controller
         $this->content->id               = NULL;
         $this->content->menu_id          = $_POST['menu_id'];
         $this->content->author           = $_SESSION['id'];
-        $this->content->blog_title       = $_POST['title'];
+        $this->content->blog_title       = trim($_POST['title']);
         $this->content->blog_link        = $this->clean($_POST['title']);
         $this->content->blog_image       = $this->content->file($_FILES['cover'])->uploadFile($_SERVER['DOCUMENT_ROOT']."/uploads/");
-        $this->content->blog_description = $_POST['description'];
-        $this->content->blog_content     = $_POST['content'];
+        $this->content->blog_description = trim($_POST['description']);
+        $this->content->blog_content     = trim($_POST['content']);
         $this->content->date_created     = date('Y-m-d H:i:s');
         
         $save = $this->content->save();
@@ -48,12 +48,5 @@ class ContentController extends Controller
         $update = $this->content->update($_POST['id']);
 
         return ($update) ? "Done" : "Error";
-    }
-
-    public function clean($string) 
-    {
-        $string = str_replace(' ', '-', strtolower($string)); // Replaces all spaces with hyphens.
-
-        return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
 }

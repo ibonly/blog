@@ -69,6 +69,20 @@ class UserController extends Controller
         }
     }
 
+    public function updateUserInfo()
+    {
+        $update = new Blog_User();
+        $update->username  = $_POST['username'];
+        $update->name      = $_POST['fullname'];
+        $update->password  = md5($_POST['password']);
+        $update->biography = $_POST['biography'];
+
+        $save = $update->update($_POST['user_id']);
+        var_dump($save);die();
+
+        return ($save) ? true : "error";
+    }
+
     public function getUser()
     {
         return $this->user->where(['id' => $_SESSION['id']])->first();

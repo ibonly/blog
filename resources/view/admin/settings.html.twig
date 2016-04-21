@@ -3,8 +3,9 @@
 {% block content %}
 <h3>ACCOUNT UPDATE</h3>
 
-      <form class="form-signin" action="/admin/update" method="post" enctype="multipart/form-data" >
+      <form class="form-signin" action="/admin/update" method="post">
         <label for="inputEmail" class="sr-only">Username</label>
+        <input type="hidden" name="user_id" value="{{ user.id }}">
         <input type="text" id="inputEmail" class="form-control" value="{{ user.username }}" name="username" required autofocus>
 
         <label for="fullname" class="sr-only">Full Name</label>

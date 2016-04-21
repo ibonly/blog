@@ -147,6 +147,10 @@ $app->post('/admin/register', function () use ($user) {
     echo $user->adminRegisteration();
 });
 
+$app->post('/admin/update', function () use ($user) {
+    echo $user->updateUserInfo();
+});
+
 $app->post('/admin/menu/create', function () use ($menu) {
     echo $menu->insertMenu($_POST['name'], $_POST['description']);
 });
